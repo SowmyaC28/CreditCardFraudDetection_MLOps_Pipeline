@@ -134,7 +134,6 @@ def predict():
             normalized_instance['month'],
             normalized_instance['day'],
             normalized_instance['hour'],
-            normalized_instance['year'],
             normalized_instance['hours_diff_bet_trans'],
             normalized_instance['amt']
         ]

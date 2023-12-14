@@ -7,7 +7,7 @@ ENV BUCKET_NAME=mlops_pipeline
 
 COPY trainer /trainer
 
-RUN pip install --no-cache-dir pandas google-cloud-storage scikit-learn joblib grpcio gcsfs python-dotenv
+RUN pip install --no-cache-dir pandas google-cloud-storage scikit-learn joblib grpcio gcsfs python-dotenv 
 
 
 ENTRYPOINT ["python", "-m", "trainer.train"]

@@ -16,10 +16,10 @@ import pandas as pd
 conf.set('core', 'enable_xcom_pickling', 'True')
 
 LOCAL_PREPROCESS_FILE_PATH = '/tmp/preprocess.py'
-GITHUB_PREPROCESS_RAW_URL = 'https://raw.githubusercontent.com/SowmyaC28/CreditCardFraudDetection_MLOps_Pipeline/main/src/data_preprocess.py'  # Adjust the path accordingly
+GITHUB_PREPROCESS_RAW_URL = 'https://raw.githubusercontent.com/SowmyaC28/CreditCardFraudDetection_MLOps_Pipeline/main/src/data_preprocess.py' 
 
 LOCAL_TRAIN_FILE_PATH = '/tmp/train.py'
-GITHUB_TRAIN_RAW_URL = 'https://raw.githubusercontent.com/SowmyaC28/CreditCardFraudDetection_MLOps_Pipeline/main/src/trainer/train.py'  # Adjust the path accordingly
+GITHUB_TRAIN_RAW_URL = 'https://raw.githubusercontent.com/SowmyaC28/CreditCardFraudDetection_MLOps_Pipeline/main/src/trainer/train.py'
 
 
 def card_frequency(data):
@@ -102,7 +102,7 @@ def drop_col(data):
     df.drop(columns=['cc_num','trans_date_trans_time','city_pop'],inplace=True)
     #Reorder columns
     df = df[['cc_freq','city','job','age','gender_M','merchant', 'category',
-            'distance_km','month','day','hour','year','hours_diff_bet_trans','amt','is_fraud']]
+            'distance_km','month','day','hour','hours_diff_bet_trans','amt','is_fraud']]
     
     
     pkl_df = pickle.dumps(df)
@@ -187,8 +187,8 @@ def load_data():
 # Initialize variables
     fs = gcsfs.GCSFileSystem()
     storage_client = storage.Client()
-    bucket_name = os.getenv("BUCKET_NAME")
-    MODEL_DIR = os.environ['AIP_STORAGE_URI']
+    #bucket_name = os.getenv("BUCKET_NAME")
+    #MODEL_DIR = os.environ['AIP_STORAGE_URI']
     gcs_train_data_path = "gs://mlops_pipeline/data/train/train_data.csv"
     with fs.open(gcs_train_data_path) as f:
         df = pd.read_csv(f)

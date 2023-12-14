@@ -3,7 +3,7 @@ from datetime import datetime
 import pytz
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier
 import joblib
 import json
 import gcsfs
@@ -41,7 +41,7 @@ def load_data(gcs_train_data_path):
    
 def train_model(X_train, y_train):
     """
-    Trains a Random Forest Regressor model on the provided data.
+    Trains a Random Forest Classifier model on the provided data.
     
     Parameters:
     X_train (DataFrame): The training features.
@@ -50,7 +50,7 @@ def train_model(X_train, y_train):
     Returns:
     RandomForestRegressor: The trained Random Forest model.
     """
-    model = RandomForestRegressor(n_estimators=100, random_state=42)
+    model = RandomForestClassifier(n_estimators=100, random_state=42)
     model.fit(X_train, y_train)
     return model
 
@@ -79,17 +79,17 @@ def main():
     gcs_train_data_path = "gs://mlops_pipeline/data/train/processed_data.csv"
     
     df = load_data(gcs_train_data_path)
-    from sklearn.preprocessing import StandardScaler
+    
     from sklearn.model_selection import train_test_split
     
     
 
     X = df.drop('is_fraud',axis=1)
+    print(X.columns)
     y = df['is_fraud']
     X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.6, random_state =101, shuffle =True)
-    sc = StandardScaler()
-    X_train = sc.fit_transform(X_train)
-    X_test_rescaled = sc.fit_transform(X_test)
+    
+   
 
         # Train the model
     model = train_model(X_train, y_train)

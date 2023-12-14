@@ -62,7 +62,6 @@ predict_custom_trained_model(
             "month": 1,
             "day": 2,
             "hour": 8,
-            "year": 2019,
             "hours_diff_bet_trans":19.96166667,
             "amt":52.94
         }
